@@ -94,13 +94,14 @@ To define `customAction` and customize it by using ember-data flow, adapters and
 - `actionId` - id of the action which can be handled later on in adpaters and serializers
 - `options` - optional parameter which will overwrite the configuration options
 
-If you want to customize your request in your adapter please, implement our adapter mixin:
+If you want to customize your request in your adapter please, implement our adapter decorator:
 
 ```js
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { AdapterMixin } from '@naeka/ember-custom-actions';
+import { withCustomActions } from '@naeka/ember-custom-actions';
 
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {}
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {}
 ```
 
 Now you can customize following methods in the adpater:
@@ -115,7 +116,8 @@ Now you can customize following methods in the adpater:
 You can define your custom path for every `customAction` by adding a conditional:
 
 ```js
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {
   urlForCustomAction(modelName, id, snapshot, actionId, queryParams) {
     if (actionId === 'myPublishAction') {
       return 'https://my-custom-api.com/publish';
@@ -129,7 +131,8 @@ export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
 If you would like to build custom `modelAction` you can do it by:
 
 ```js
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {
   urlForCustomAction(modelName, id, snapshot, actionId, queryParams) {
     if (requestType === 'myPublishAction') {
       return `${this._buildURL(modelName, id)}/publish`;
@@ -145,7 +148,8 @@ export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
 You can define your custom method for every `customAction` by adding a conditional:
 
 ```js
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {
   methodForCustomAction(params) {
     if (params.actionId === 'myPublishAction') {
       return 'PUT';
@@ -161,7 +165,8 @@ export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
 You can define your custom headers for every `customAction` by adding a conditional:
 
 ```js
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {
   headersForCustomAction(params) {
     if (params.actionId === 'myPublishAction') {
       return {
@@ -179,7 +184,8 @@ export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
 You can define your custom data for every `customAction` by adding a conditional:
 
 ```js
-export default class BookAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+export default class BookAdapter extends JSONAPIAdapter {
   dataForCustomAction(params) {
     if (params.actionId === 'myPublishAction') {
       return {
