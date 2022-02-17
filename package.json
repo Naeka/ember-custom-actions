@@ -1,6 +1,6 @@
 {
   "name": "@naeka/ember-custom-actions",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Custom models API actions for Ember applications",
   "keywords": [
     "ember-addon",
