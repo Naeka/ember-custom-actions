@@ -1,7 +1,10 @@
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { AdapterMixin } from '@naeka/ember-custom-actions';
+import { withCustomActions } from '@naeka/ember-custom-actions';
 
-export default class CarAdapter extends JSONAPIAdapter.extend(AdapterMixin) {
+@withCustomActions
+class CustomActionsJSONAPIAdapter extends JSONAPIAdapter {}
+
+export default class CarAdapter extends CustomActionsJSONAPIAdapter {
   urlForCustomAction(modelName, id, snapshot, requestType) {
     let {
       adapterOptions: { suffix },

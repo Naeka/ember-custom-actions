@@ -1,4 +1,7 @@
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import { AdapterMixin } from '@naeka/ember-custom-actions';
+import { withCustomActions } from '@naeka/ember-custom-actions';
 
-export default class BikeAdapter extends JSONAPIAdapter.extend(AdapterMixin) {}
+@withCustomActions
+class CustomActionsJSONAPIAdapter extends JSONAPIAdapter {}
+
+export default class BikeAdapter extends CustomActionsJSONAPIAdapter {}
