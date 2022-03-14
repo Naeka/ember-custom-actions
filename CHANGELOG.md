@@ -1,3 +1,9 @@
+## v0.1.1 (2022-03-14)
+
+#### :bug: Bug Fix
+
+- [570bf7ad](https://github.com/naeka/ember-custom-actions/commit/570bf7ad0124988606e8652a29da35d4d4268806) Don’t override class prototype in adapter decorator ([@tomdrn](https://github.com/tomdrn))
+
 ## v0.1.0 (2022-02-17)
 
 #### :boom: Breaking changes
