@@ -248,15 +248,10 @@ export default class Action {
     let actionId = this.id;
     let queryParams = this.queryParams();
     let modelName = this.modelName;
-    let adapterOptions = this.config.adapterOptions;
-    let snapshot = this.model._internalModel.createSnapshot({
-      adapterOptions,
-    });
 
     return this.adapter.urlForCustomAction(
       modelName,
       id,
-      snapshot,
       actionId,
       queryParams
     );

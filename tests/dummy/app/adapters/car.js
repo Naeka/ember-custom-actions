@@ -5,19 +5,15 @@ import { withCustomActions } from '@naeka/ember-custom-actions';
 class CustomActionsJSONAPIAdapter extends JSONAPIAdapter {}
 
 export default class CarAdapter extends CustomActionsJSONAPIAdapter {
-  urlForCustomAction(modelName, id, snapshot, requestType) {
-    let {
-      adapterOptions: { suffix },
-    } = snapshot;
-    suffix = suffix || '';
-
+  urlForCustomAction(modelName, id, requestType) {
+    const suffix = '';
     if (requestType === 'clean') {
-      let baseUrl = this.buildURL(modelName, id, snapshot, requestType);
+      let baseUrl = this.buildURL(modelName, id, requestType);
       return `${baseUrl}/custom-clean`;
     } else if (requestType === 'fix') {
       return `/custom-cars/${id}/custom-fix${suffix}`;
     } else if (requestType === 'clean-all') {
-      let baseUrl = this.buildURL(modelName, id, snapshot, requestType);
+      let baseUrl = this.buildURL(modelName, id, requestType);
       return `${baseUrl}/custom-clean-all`;
     } else if (requestType === 'fixAll') {
       return `/custom-cars/custom-fix-all${suffix}`;
